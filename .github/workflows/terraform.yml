@@ -42,7 +42,12 @@ jobs:
         uses: bridgecrewio/checkov-action@v12.1347.0
         with:
           directory: terraform
+
       - name: Terraform plan
         run: |
          cd terraform 
          terraform plan
+      - name: Terraform Apply
+        run: |
+         cd terraform
+         terraform apply -auto-approve
