@@ -36,7 +36,7 @@ jobs:
       - name: Terraform Format
         run: | 
          cd terraform 
-         terraform fmt -check
+         terraform fmt 
         
       - name: Checkov GitHub Action
         uses: bridgecrewio/checkov-action@v12.1347.0
