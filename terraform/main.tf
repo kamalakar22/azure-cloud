@@ -1,3 +1,11 @@
+# Declare the resource group
+resource "azurerm_resource_group" "dev_rg" {
+  name     = "${local.resource_name_prefix}-rg"
+  location = var.resource_group_location
+  tags     = local.common_tags
+}
+
+
 # Define the Virtual Network
 resource "azurerm_virtual_network" "dev_vnet" {
   name                = "${local.resource_name_prefix}-dev-vnet"
