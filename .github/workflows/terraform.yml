@@ -25,14 +25,20 @@ jobs:
           terraform_version: 1.4.6  # Specify the Terraform version
 
       - name: Terraform Init
-        run: terraform init
+        run: |
+           cd terraform 
+           terraform init
 
       - name: Terraform Format
-        run: terraform fmt -check
+        run: | 
+         cd terraform 
+         terraform fmt -check
         
       - name: Checkov GitHub Action
         uses: bridgecrewio/checkov-action@v12.1347.0
         with:
           directory: terraform
       - name: Terraform plan
-        run: terraform plan
+        run: |
+         cd terraform 
+         terraform plan
