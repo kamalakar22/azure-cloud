@@ -16,7 +16,8 @@ jobs:
       ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
       ACCESS_KEY: ${{ secrets.ACCESS_KEY }}
-
+      STORAGE_ACCOUNT_NAME: ${{ secrets.STORAGE_ACCOUNT_NAME }}  # Ensure this is defined
+      CONTAINER_NAME: ${{ secrets.CONTAINER_NAME }}              # Ensure this is defined
     steps:
       - name: Checkout
         uses: actions/checkout@v4.1.7
@@ -29,8 +30,8 @@ jobs:
       - name: Terraform Init
         run: |
            cd terraform 
-           terraform init -backend-config=STORAGE_ACCOUNT_NAME: ${{STORAGE_ACCOUNT_NAME}} \
-                          -backend-config="container_name=terraform" \
+           terraform init -backend-config="storage_account_name: ${{ secrets.STORAGE_ACCOUNT_NAME }}" \
+                          -backend-config="container_name=${{ secrets.CONTAINER_NAME }}" \
                           -backend-config="key=terraform.tfstate" \
                           -backend-config="access_key=${{ secrets.ACCESS_KEY }}"
 
